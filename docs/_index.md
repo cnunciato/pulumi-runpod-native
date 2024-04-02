@@ -20,6 +20,7 @@ pulumi config set --secret runpod:token
 {{< chooser language "typescript,go,python,csharp,yaml" />}}
 
 {{% choosable language typescript %}}
+
 ```typescript
 import * as pulumi from "@pulumi/pulumi";
 import * as runpod from "@runpod-infra/pulumi";
@@ -62,6 +63,7 @@ export const networkStorage = {
 {{% /choosable %}}
 
 {{% choosable language go %}}
+
 ```go
 package main
 
@@ -120,7 +122,7 @@ func main() {
 {{% choosable language python %}}
 
 ```python
-    import pulumi
+import pulumi
 import pulumi_runpod as runpod
 from loguru import logger
 import json
@@ -176,6 +178,7 @@ except Exception as e:
 {{% /choosable %}}
 
 {{% choosable language yaml %}}
+
 ```yaml
 resources:
     testNetworkStorage:
