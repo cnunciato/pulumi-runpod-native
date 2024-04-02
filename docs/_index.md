@@ -16,7 +16,7 @@ pulumi config set --secret runpod:token
 
 ## Example
 
-{{< chooser language "typescript,go,python,csharp,yaml" />}}
+{{< chooser language "typescript,go,python,yaml" />}}
 
 {{% choosable language typescript %}}
 
@@ -184,59 +184,6 @@ resources:
 outputs:
   pod: ${myRandomPod.pod}
   networkStorage: ${testNetworkStorage.networkStorage}
-```
-
-{{% /choosable %}}
-
-{{% choosable language csharp %}}
-
-RunPod's support for C# is still in preview.
-
-```csharp
-using System.Collections.Generic;
-using Pulumi;
-using Runpod = Pulumi.Runpod;
-
-return await Deployment.RunAsync(() =>
-{
-    var testNetworkStorage = new Runpod.NetworkStorage("testNetworkStorage", new()
-    {
-        Name = "testStorage1",
-        Size = 20,
-        DataCenterId = "US-NJ",
-    });
-
-    var myRandomPod = new Runpod.Pod("myRandomPod", new()
-    {
-        CloudType = "ALL",
-        NetworkVolumeId = testNetworkStorage.NetworkStorage.Id,
-        GpuCount = 1,
-        VolumeInGb = 50,
-        ContainerDiskInGb = 50,
-        MinVcpuCount = 2,
-        MinMemoryInGb = 15,
-        GpuTypeId = "NVIDIA GeForce RTX 3070",
-        Name = "RunPod Pytorch",
-        ImageName = "runpod/pytorch",
-        DockerArgs = "",
-        Ports = "8888/http",
-        VolumeMountPath = "/workspace",
-        Env = new[]
-        {
-            new Runpod.Inputs.PodEnvArgs
-            {
-                Key = "JUPYTER_PASSWORD",
-                Value = "rns1hunbsstltcpad22d",
-            },
-        },
-    });
-
-    return new Dictionary<string, object?>
-    {
-        ["pod"] = myRandomPod.Pod,
-        ["networkStorage"] = testNetworkStorage.NetworkStorage,
-    };
-});
 ```
 
 {{% /choosable %}}
