@@ -17,7 +17,7 @@ To begin with, please set your runpod API key using Pulumi.
 
 ## Example
 
-{{< chooser language "typescript,go,python,csharp,yaml" >}}
+{{< chooser language "typescript,go,python,csharp,yaml" />}}
 
 {{% choosable language typescript %}}
 
